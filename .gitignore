@@ -41,8 +41,11 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
-/environments
+**/environment.prod.ts
+**/environment.ts
 
 # System Files
 .DS_Store
 Thumbs.db
+
+new.txt

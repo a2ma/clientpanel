@@ -1,5 +1,8 @@
 # Clientpanel
 
+Created as part of Traversy's Angular Front to Back course on Udemy, 2019-06-24.
+Front-end Angular, backend Firebase.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.4.
 
 ## Development server

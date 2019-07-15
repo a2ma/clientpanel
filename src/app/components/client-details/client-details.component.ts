@@ -16,6 +16,8 @@ export class ClientDetailsComponent implements OnInit {
 
   id: string;
   client: Client;
+  hasBalance = false;
+  showBalanceUpdateInput = false;
 
   constructor(
     private clientService: ClientService,
@@ -25,6 +27,19 @@ export class ClientDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // get id from URL
+    this.id = this.route.snapshot.params.id;
+    // get client
+    this.clientService.getClient(this.id).subscribe(client => {
+      if (client != null) {
+        if (client.balance > 0) {
+          this.hasBalance = true;
+        }
+      }
+      this.client = client;
+      console.log(this.client);
+    });
+
   }
 
 }

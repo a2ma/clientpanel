@@ -47,4 +47,10 @@ export class ClientService {
     }));
     return this.client;
   }
+
+  updateClient(client: Client) {
+    console.log(`Updated information: ${client.balance}`);
+    this.clientDoc = this.afs.doc(`clients/${client.id}`);
+    this.clientDoc.update(client);
+  }
 }

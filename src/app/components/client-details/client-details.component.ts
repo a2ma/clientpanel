@@ -32,14 +32,26 @@ export class ClientDetailsComponent implements OnInit {
     // get client
     this.clientService.getClient(this.id).subscribe(client => {
       if (client != null) {
-        if (client.balance > 0) {
-          this.hasBalance = true;
-        }
+        this.balanceIndicatorUpdate(client.balance);
       }
       this.client = client;
-      console.log(this.client);
     });
 
+  }
+
+  updateBalance() {
+    console.log(`${this.client.balance}`);
+    this.clientService.updateClient(this.client);
+    this.flashMessage.show('Balance Updated', { cssClass: 'alert-success', timeout: 4000 });
+    this.balanceIndicatorUpdate(this.client.balance);
+  }
+
+  balanceIndicatorUpdate(balance: number) {
+    if (balance > 0) {
+      this.hasBalance = true;
+    } else {
+      this.hasBalance = false;
+    }
   }
 
 }

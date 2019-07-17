@@ -15,7 +15,13 @@ import { Client } from '../../models/Client';
 export class ClientDetailsComponent implements OnInit {
 
   id: string;
-  client: Client;
+  client: Client = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    balance: 0
+  };
   hasBalance = false;
   showBalanceUpdateInput = false;
 
@@ -51,6 +57,16 @@ export class ClientDetailsComponent implements OnInit {
       this.hasBalance = true;
     } else {
       this.hasBalance = false;
+    }
+  }
+
+  onDeleteClick() {
+    if (confirm('Are you sure?')) {
+      this.clientService.deleteClient(this.client);
+      this.flashMessage.show('Client removed.', { cssClass: 'alert-success', timeout: 4000 });
+      this.router.navigate(['/']);
+    } else {
+      console.log('shaddup');
     }
   }
 

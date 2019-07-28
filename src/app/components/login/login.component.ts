@@ -23,21 +23,21 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.authService.getAuth().subscribe(auth => {
-      if(auth) {
+      if (auth) {
         this.router.navigate(['/']);
       }
-    })
+    });
   }
 
   onSubmit() {
     this.authService.login(this.email, this.password)
-    .then(res => {
-      this.flashMessage.show('You are now logged in.', {cssClass: 'alert-success', timeout: 4000});
-      this.router.navigate(['/']);
-    })
-    .catch(err => {
-      this.flashMessage.show(err.message, { cssClass: 'alert-danger', timeout: 8000 });
-    });
+      .then(res => {
+        this.flashMessage.show('You are now logged in.', { cssClass: 'alert-success', timeout: 4000 });
+        this.router.navigate(['/']);
+      })
+      .catch(err => {
+        this.flashMessage.show(err.message, { cssClass: 'alert-danger', timeout: 8000 });
+      });
   }
 
 }

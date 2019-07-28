@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
 
 import { ClientService } from '../../services/client.service';
+import { SettingsService } from '../../services/settings.service';
 import { Client } from '../../models/Client';
 
 @Component({
@@ -20,16 +21,19 @@ export class EditClientComponent implements OnInit {
     phone: '',
     balance: 0
   };
-  disableBalanceOnEdit = true;
+  disableBalanceOnEdit: boolean;
 
   constructor(
     private clientService: ClientService,
+    private settingsService: SettingsService,
     private router: Router,
     private route: ActivatedRoute,
     private flashMessage: FlashMessagesService
   ) { }
 
   ngOnInit() {
+    // set access to balance field
+    this.disableBalanceOnEdit = this.settingsService.getSettings().disableBalanceOnEdit;
     // get id from URL
     this.id = this.route.snapshot.params.id;
     // get client
